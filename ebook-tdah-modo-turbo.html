@@ -1,0 +1,1787 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mitos y Realidades del Tratamiento de TDAH — Dra. María Gabriela Jiménez</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ===== DESIGN TOKENS ===== */
+:root {
+  --violet: #7B2FBE;
+  --violet-dark: #1A0533;
+  --violet-light: #EDE7F6;
+  --teal: #00C9A7;
+  --orange: #FF6B35;
+  --bg: #F8F7F4;
+  --carbon: #1A1A2E;
+  --white: #FFFFFF;
+  --night: #0D1B2A;
+  --font: 'Poppins', sans-serif;
+  --radius: 16px;
+  --shadow: 0 4px 24px rgba(123,47,190,0.12);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: var(--font);
+  background: #111;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* ===== EBOOK CONTAINER (A4 Portrait) ===== */
+.ebook-viewport {
+  position: relative;
+  width: min(520px, 100vw);
+  height: min(780px, 100vh);
+  overflow: hidden;
+}
+
+@media (max-height: 800px) {
+  .ebook-viewport { height: 100vh; width: calc(100vh * 520/780); }
+}
+
+/* ===== PAGES ===== */
+.page {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.45s ease, transform 0.45s ease;
+  transform: translateX(40px);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.page.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+  position: fixed;
+  top: 0; left: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--teal), var(--violet));
+  transition: width 0.4s ease;
+  z-index: 9999;
+  border-radius: 0 4px 4px 0;
+}
+
+/* ===== NAV ===== */
+.nav-wrap {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  z-index: 9999;
+  background: rgba(26,5,51,0.85);
+  backdrop-filter: blur(12px);
+  padding: 8px 18px;
+  border-radius: 40px;
+  border: 1px solid rgba(123,47,190,0.3);
+}
+.nav-btn {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  cursor: pointer;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s;
+}
+.nav-btn:hover { background: rgba(255,255,255,0.15); }
+.nav-counter { color: rgba(255,255,255,0.75); font-size: 12px; font-family: var(--font); font-weight: 500; letter-spacing: 0.5px; }
+
+/* ===== FOOTER GLOBAL ===== */
+.page-footer {
+  position: absolute;
+  bottom: 10px;
+  left: 0; right: 0;
+  text-align: center;
+  font-size: 9px;
+  color: rgba(0,0,0,0.25);
+  font-family: var(--font);
+  letter-spacing: 0.3px;
+}
+.page-footer a { color: inherit; text-decoration: none; }
+.page-footer-light { color: rgba(255,255,255,0.25); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.04)} }
+@keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes glow { 0%,100%{box-shadow:0 0 20px rgba(0,201,167,0.3)} 50%{box-shadow:0 0 40px rgba(0,201,167,0.6)} }
+
+.page.active .animate { animation: fadeUp 0.5s ease forwards; }
+.page.active .a1 { animation-delay: 0.1s; opacity:0; }
+.page.active .a2 { animation-delay: 0.2s; opacity:0; }
+.page.active .a3 { animation-delay: 0.3s; opacity:0; }
+.page.active .a4 { animation-delay: 0.4s; opacity:0; }
+.page.active .a5 { animation-delay: 0.5s; opacity:0; }
+.page.active .a6 { animation-delay: 0.6s; opacity:0; }
+
+/* ===== UTILITY ===== */
+.tag {
+  display: inline-block;
+  background: var(--violet);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+.tag-teal { background: var(--teal); color: var(--carbon); }
+.tag-orange { background: var(--orange); }
+
+.card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  box-shadow: var(--shadow);
+}
+.card-violet { background: var(--violet-light); }
+.card-teal { background: rgba(0,201,167,0.1); }
+.card-orange { background: rgba(255,107,53,0.08); }
+
+.divider {
+  width: 40px; height: 3px;
+  background: linear-gradient(90deg, var(--teal), var(--violet));
+  border-radius: 2px;
+  margin: 0 auto;
+}
+
+.emoji-xl { font-size: 40px; display:block; margin-bottom: 6px; }
+.emoji-lg { font-size: 28px; }
+
+/* ===================================================================
+   PAGE 1 — PORTADA
+   =================================================================== */
+#p1 {
+  background: linear-gradient(145deg, var(--violet-dark) 0%, #3D1578 60%, var(--violet) 100%);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 40px 36px 80px;
+}
+#p1 .deco-circle {
+  position:absolute;
+  border-radius:50%;
+  opacity:0.08;
+}
+#p1 .c1 { width:300px;height:300px;background:#fff;top:-80px;right:-80px; }
+#p1 .c2 { width:200px;height:200px;background:var(--teal);bottom:-40px;left:-60px; }
+#p1 .c3 { width:120px;height:120px;background:var(--orange);top:180px;left:20px; }
+
+#p1 .brain-emoji {
+  font-size: 72px;
+  animation: float 3s ease-in-out infinite;
+  display:block;
+  margin-bottom: 16px;
+}
+#p1 h1 {
+  font-size: 32px;
+  font-weight: 900;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 8px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+#p1 h1 span { color: var(--teal); }
+#p1 .subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  font-weight: 400;
+  line-height: 1.5;
+  max-width: 320px;
+  margin: 0 auto 20px;
+}
+#p1 .author-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 30px;
+  padding: 8px 16px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  backdrop-filter: blur(8px);
+}
+#p1 .handle { color: var(--teal); }
+#p1 .badge-sticker {
+  position: absolute;
+  top: 24px; right: 20px;
+  background: var(--orange);
+  color:#fff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 20px;
+  transform: rotate(6deg);
+  box-shadow: 0 3px 12px rgba(255,107,53,0.4);
+  animation: pulse 2s infinite;
+}
+
+/* ===================================================================
+   PAGE 2 — DISCLAIMER
+   =================================================================== */
+#p2 {
+  background: var(--bg);
+  padding: 36px 28px 80px;
+  justify-content: flex-start;
+}
+#p2 .warn-header {
+  background: var(--orange);
+  color:#fff;
+  border-radius: 12px 12px 0 0;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 700;
+  font-size: 13px;
+}
+#p2 .warn-body {
+  background: #fff;
+  border: 2px solid var(--orange);
+  border-top: none;
+  border-radius: 0 0 12px 12px;
+  padding: 18px;
+}
+#p2 .warn-body p { font-size: 12px; line-height: 1.65; color: var(--carbon); margin-bottom: 10px; }
+#p2 .no-list { list-style: none; margin-bottom: 12px; }
+#p2 .no-list li {
+  font-size: 12px;
+  color: var(--carbon);
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+#p2 .x-icon { color: #E53935; font-weight:700; font-size:14px; }
+#p2 .final-note {
+  background: var(--violet-light);
+  border-radius: 10px;
+  padding: 12px 14px;
+  font-size: 11.5px;
+  color: var(--violet-dark);
+  font-weight: 500;
+  line-height: 1.5;
+  text-align: center;
+  margin-top: 10px;
+}
+
+/* ===================================================================
+   PAGE 3 — INTRO ¿QUÉ ONDA CON MI CEREBRO?
+   =================================================================== */
+#p3 {
+  background: var(--bg);
+  padding: 32px 28px 80px;
+}
+#p3 h2 {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--violet-dark);
+  margin-bottom: 4px;
+}
+#p3 h2 span { color: var(--violet); }
+#p3 .intro-p { font-size: 12px; color: #555; line-height: 1.6; margin-bottom: 14px; }
+#p3 .tabs-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+#p3 .tab-card {
+  flex:1;
+  border-radius: 12px;
+  padding: 12px 8px;
+  text-align: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--carbon);
+  line-height: 1.4;
+}
+#p3 .tab-card .t-emoji { font-size: 22px; display:block; margin-bottom: 4px; }
+#p3 .tc-blue  { background: #E3F2FD; }
+#p3 .tc-orange{ background: #FFF3E0; }
+#p3 .tc-green { background: #E8F5E9; }
+#p3 .stat-box {
+  background: linear-gradient(135deg, var(--violet), #9C27B0);
+  border-radius: 14px;
+  padding: 16px;
+  color:#fff;
+  text-align:center;
+  margin-bottom: 12px;
+}
+#p3 .stat-big { font-size: 38px; font-weight: 900; }
+#p3 .stat-label { font-size: 11px; opacity: 0.85; font-weight: 400; }
+#p3 .empow { font-size: 12.5px; color: var(--violet-dark); font-weight: 600; text-align:center; font-style:italic; }
+
+/* ===================================================================
+   PAGE 4 — LOS 3 MODOS
+   =================================================================== */
+#p4 {
+  background: var(--bg);
+  padding: 28px 24px 80px;
+}
+#p4 h2 { font-size: 19px; font-weight: 800; color: var(--violet-dark); margin-bottom: 16px; text-align:center; }
+#p4 .mode-cards { display: flex; flex-direction: column; gap: 12px; }
+#p4 .mode-card {
+  border-radius: 14px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+#p4 .mc-blue   { background: #E3F2FD; }
+#p4 .mc-orange { background: #FFF3E0; }
+#p4 .mc-violet { background: var(--violet-light); }
+#p4 .mode-icon { font-size: 30px; flex-shrink:0; margin-top:2px; }
+#p4 .mode-title { font-size: 14px; font-weight: 700; color: var(--carbon); }
+#p4 .mode-sub   { font-size: 10px; color: #666; font-weight: 500; margin-bottom: 4px; }
+#p4 .mode-bullets li { font-size: 11px; color: #444; line-height:1.5; list-style:none; padding-left:12px; position:relative; }
+#p4 .mode-bullets li::before { content:"→"; position:absolute; left:0; color:var(--violet); font-size:10px; }
+#p4 .cta-q { text-align:center; font-size:12px; font-weight:600; color:var(--violet); margin-top:10px; font-style:italic; }
+
+/* ===================================================================
+   PAGE 5 — BLOQUE 1 INTRO PASTILLAS
+   =================================================================== */
+#p5 {
+  background: linear-gradient(170deg, var(--violet-dark) 0%, #2D0B5A 100%);
+  padding: 28px 28px 80px;
+  color:#fff;
+}
+#p5 .bloque-tag {
+  display:inline-block;
+  background: var(--teal);
+  color: var(--carbon);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform:uppercase;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+}
+#p5 h2 { font-size: 22px; font-weight: 900; margin-bottom: 16px; line-height:1.2; }
+#p5 h2 span { color: var(--teal); }
+#p5 .chat-bubble {
+  background: rgba(255,255,255,0.1);
+  border-radius: 18px 18px 18px 4px;
+  padding: 10px 14px;
+  font-size: 12px;
+  margin-bottom: 7px;
+  max-width: 85%;
+  border: 1px solid rgba(255,255,255,0.15);
+}
+#p5 .answer-p { font-size: 12px; line-height:1.6; color: rgba(255,255,255,0.85); margin-top: 14px; margin-bottom: 10px; }
+#p5 .analogy-box {
+  background: rgba(0,201,167,0.15);
+  border-left: 3px solid var(--teal);
+  border-radius: 0 10px 10px 0;
+  padding: 12px 14px;
+  font-size: 11.5px;
+  line-height:1.55;
+  color: rgba(255,255,255,0.9);
+}
+#p5 .analogy-box strong { color: var(--teal); }
+
+/* ===================================================================
+   PAGE 6 — 3 CRITERIOS MEDICACIÓN
+   =================================================================== */
+#p6 {
+  background: var(--bg);
+  padding: 28px 24px 80px;
+}
+#p6 h2 { font-size: 17px; font-weight: 800; color: var(--violet-dark); margin-bottom: 16px; text-align:center; }
+#p6 .criteria-list { display:flex; flex-direction:column; gap:10px; margin-bottom:14px; }
+#p6 .criterion {
+  background:#fff;
+  border-radius: 12px;
+  padding: 13px 14px;
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  border-left: 4px solid var(--violet);
+}
+#p6 .crit-num {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--violet);
+  opacity: 0.25;
+  line-height:1;
+  flex-shrink:0;
+  min-width:28px;
+}
+#p6 .crit-title { font-size: 13px; font-weight: 700; color: var(--carbon); margin-bottom:2px; }
+#p6 .crit-sub   { font-size: 11px; color: #666; line-height:1.4; }
+#p6 .key-box {
+  background: linear-gradient(135deg, var(--violet), #9C27B0);
+  border-radius: 12px;
+  padding: 14px 16px;
+  color:#fff;
+  text-align:center;
+  font-size: 12.5px;
+  font-weight: 600;
+  line-height:1.5;
+}
+
+/* ===================================================================
+   PAGE 7 — CIENCIA SIMPLIFICADA (SLIDERS)
+   =================================================================== */
+#p7 {
+  background: var(--violet-dark);
+  padding: 28px 24px 80px;
+  color:#fff;
+}
+#p7 h2 { font-size: 20px; font-weight: 800; margin-bottom: 6px; }
+#p7 h2 span { color: var(--teal); }
+#p7 .intro-sci { font-size: 11.5px; color: rgba(255,255,255,0.75); line-height:1.6; margin-bottom:16px; }
+#p7 .neuros { display:flex; gap:10px; margin-bottom:16px; }
+#p7 .neuro-pill {
+  flex:1;
+  border-radius: 30px;
+  padding: 10px 12px;
+  text-align:center;
+  font-size: 11px;
+  font-weight: 600;
+}
+#p7 .np-violet { background: rgba(123,47,190,0.35); border:1px solid var(--violet); color:#DCC8F7; }
+#p7 .np-blue   { background: rgba(33,150,243,0.2); border:1px solid #2196F3; color:#90CAF9; }
+#p7 .neuro-label { font-size: 10px; font-weight: 800; letter-spacing:0.5px; margin-bottom:3px; }
+#p7 .neuro-role  { font-size: 10px; opacity:0.8; }
+#p7 .slider-box { background: rgba(255,255,255,0.07); border-radius:14px; padding:16px; margin-bottom:12px; }
+#p7 .slider-row { margin-bottom:10px; }
+#p7 .slider-label { font-size:10.5px; color:rgba(255,255,255,0.7); margin-bottom:5px; display:flex; justify-content:space-between; }
+#p7 .slider-track { height:8px; background:rgba(255,255,255,0.1); border-radius:4px; overflow:hidden; }
+#p7 .slider-fill-signal { width:45%; height:100%; background: linear-gradient(90deg,var(--teal),#00E5C8); border-radius:4px; }
+#p7 .slider-fill-noise  { width:82%; height:100%; background: linear-gradient(90deg,var(--orange),#FFB347); border-radius:4px; }
+#p7 .med-note { font-size:11px; line-height:1.6; color:rgba(255,255,255,0.8); }
+#p7 .med-note strong { color:var(--teal); }
+
+/* ===================================================================
+   PAGE 8 — TIPOS DE MEDICACIÓN
+   =================================================================== */
+#p8 {
+  background: var(--bg);
+  padding: 26px 22px 80px;
+}
+#p8 h2 { font-size: 18px; font-weight: 800; color:var(--violet-dark); text-align:center; margin-bottom:16px; }
+#p8 .meds-grid { display:flex; gap:10px; margin-bottom:12px; }
+#p8 .med-card { flex:1; border-radius:14px; padding:14px 12px; }
+#p8 .mc-est { background: var(--violet-light); }
+#p8 .mc-noe { background: rgba(0,201,167,0.1); }
+#p8 .med-icon { font-size:26px; margin-bottom:8px; display:block; }
+#p8 .med-name  { font-size:12px; font-weight:800; color:var(--violet-dark); margin-bottom:2px; }
+#p8 .med-ex    { font-size:10px; color:#888; margin-bottom:8px; }
+#p8 .med-facts li {
+  list-style:none;
+  font-size:10.5px;
+  color:#444;
+  padding:3px 0;
+  padding-left:12px;
+  position:relative;
+  line-height:1.4;
+}
+#p8 .med-facts li::before { content:"→"; position:absolute;left:0;color:var(--violet);font-size:10px; }
+#p8 .warning-strip {
+  background: rgba(255,107,53,0.1);
+  border: 1px solid rgba(255,107,53,0.3);
+  border-radius:10px;
+  padding:10px 14px;
+  font-size:11px;
+  color:var(--carbon);
+  line-height:1.5;
+}
+#p8 .warning-strip strong { color:var(--orange); }
+
+/* ===================================================================
+   PAGE 9 — BLOQUE 2 INTRO MULTIMODAL
+   =================================================================== */
+#p9 {
+  background: linear-gradient(160deg, #003D33 0%, #00695C 100%);
+  padding: 28px 26px 80px;
+  color:#fff;
+}
+#p9 .bloque-tag { background:var(--teal); color:var(--carbon); font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:5px 14px; border-radius:20px; margin-bottom:14px; display:inline-block; }
+#p9 h2 { font-size: 22px; font-weight:900; margin-bottom:12px; line-height:1.2; }
+#p9 h2 span { color:var(--teal); }
+#p9 .science-p { font-size:12px; line-height:1.6; color:rgba(255,255,255,0.8); margin-bottom:16px; }
+#p9 .team-grid {
+  display:grid;
+  grid-template-columns: repeat(5,1fr);
+  gap:8px;
+  margin-bottom:14px;
+}
+#p9 .team-item { text-align:center; }
+#p9 .team-icon { font-size:26px; display:block; margin-bottom:4px; }
+#p9 .team-label { font-size:8.5px; color:rgba(255,255,255,0.75); font-weight:600; line-height:1.3; }
+#p9 .power-line {
+  background: rgba(0,201,167,0.2);
+  border-left:3px solid var(--teal);
+  border-radius:0 10px 10px 0;
+  padding:10px 14px;
+  font-size:12px;
+  font-weight:600;
+  color:#fff;
+}
+
+/* ===================================================================
+   PAGE 10 — FUNCIONES EJECUTIVAS
+   =================================================================== */
+#p10 {
+  background: var(--bg);
+  padding: 26px 22px 80px;
+}
+#p10 h2 { font-size:17px; font-weight:800; color:var(--violet-dark); margin-bottom:4px; }
+#p10 .sub { font-size:11px; color:#888; margin-bottom:14px; line-height:1.5; }
+#p10 .fe-cards { display:flex; flex-direction:column; gap:9px; margin-bottom:12px; }
+#p10 .fe-card {
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  border-radius:12px;
+  padding:12px 14px;
+}
+#p10 .fec-a { background: var(--violet-light); }
+#p10 .fec-b { background: #fff; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+#p10 .fe-icon { font-size:22px; flex-shrink:0; margin-top:2px; }
+#p10 .fe-title { font-size:12px; font-weight:700; color:var(--violet-dark); margin-bottom:2px; }
+#p10 .fe-desc  { font-size:10.5px; color:#555; line-height:1.45; }
+#p10 .quote-box {
+  background: linear-gradient(135deg,var(--violet-dark),var(--violet));
+  border-radius:12px;
+  padding:12px 16px;
+  color:#fff;
+  font-size:12px;
+  font-style:italic;
+  font-weight:500;
+  line-height:1.5;
+  text-align:center;
+}
+#p10 .quote-box span { color:var(--teal); font-style:normal; font-weight:700; }
+
+/* ===================================================================
+   PAGE 11 — SUEÑO
+   =================================================================== */
+#p11 {
+  background: var(--night);
+  padding: 26px 24px 80px;
+  color:#fff;
+}
+#p11 h2 { font-size:20px; font-weight:900; margin-bottom:4px; }
+#p11 h2 span { color:var(--teal); }
+#p11 .hook { font-size:11.5px; color:rgba(255,255,255,0.7); margin-bottom:14px; line-height:1.5; }
+#p11 .two-cols { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px; }
+#p11 .col-bad { background:rgba(229,57,53,0.15); border-radius:12px; padding:12px; }
+#p11 .col-good { background:rgba(0,201,167,0.1); border-radius:12px; padding:12px; }
+#p11 .col-header { font-size:11px; font-weight:700; margin-bottom:8px; padding-bottom:6px; border-bottom:1px solid rgba(255,255,255,0.1); }
+#p11 .col-bad .col-header { color:#EF9A9A; }
+#p11 .col-good .col-header { color:var(--teal); }
+#p11 .col-item { font-size:10px; color:rgba(255,255,255,0.8); padding:3px 0; line-height:1.4; }
+#p11 .hours-badge {
+  background: linear-gradient(135deg,var(--teal),#00E5C8);
+  border-radius:14px;
+  padding:14px;
+  text-align:center;
+  color:var(--carbon);
+  animation: glow 3s ease-in-out infinite;
+}
+#p11 .hours-big { font-size:36px; font-weight:900; display:block; line-height:1; }
+#p11 .hours-label { font-size:11px; font-weight:600; }
+
+/* ===================================================================
+   PAGE 12 — MOVIMIENTO Y NUTRICIÓN
+   =================================================================== */
+#p12 {
+  background: var(--bg);
+  padding: 24px 20px 80px;
+}
+#p12 h2 { font-size:18px; font-weight:800; color:var(--violet-dark); text-align:center; margin-bottom:12px; }
+#p12 .two-halves { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px; }
+#p12 .half { border-radius:14px; padding:14px 12px; }
+#p12 .h-move { background: rgba(255,107,53,0.08); border:1px solid rgba(255,107,53,0.2); }
+#p12 .h-food { background: rgba(76,175,80,0.08); border:1px solid rgba(76,175,80,0.2); }
+#p12 .half-title { font-size:13px; font-weight:800; margin-bottom:4px; }
+#p12 .h-move .half-title { color:var(--orange); }
+#p12 .h-food .half-title { color:#388E3C; }
+#p12 .half-sub { font-size:10px; color:#666; margin-bottom:8px; line-height:1.4; }
+#p12 .half-item { font-size:10px; color:#444; padding:2.5px 0; line-height:1.4; }
+#p12 .stat-strip {
+  background: linear-gradient(135deg,var(--orange),#FF8F00);
+  border-radius:12px;
+  padding:12px 16px;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#fff;
+}
+#p12 .stat-num { font-size:28px; font-weight:900; line-height:1; }
+#p12 .stat-text { font-size:11px; line-height:1.4; }
+
+/* ===================================================================
+   PAGE 13 — ENTORNO ESCOLAR
+   =================================================================== */
+#p13 {
+  background: var(--bg);
+  padding: 26px 22px 80px;
+}
+#p13 h2 { font-size:18px; font-weight:800; color:var(--violet-dark); margin-bottom:4px; }
+#p13 .lead { font-size:11.5px; color:#666; margin-bottom:14px; line-height:1.5; font-style:italic; }
+#p13 .adapt-grid {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:7px;
+  margin-bottom:12px;
+}
+#p13 .adapt-item {
+  background:#fff;
+  border-radius:10px;
+  padding:9px 11px;
+  font-size:10.5px;
+  color:var(--carbon);
+  line-height:1.4;
+  box-shadow:0 1px 8px rgba(0,0,0,0.05);
+  display:flex;
+  align-items:flex-start;
+  gap:6px;
+}
+#p13 .adapt-pin { color:var(--violet); font-size:12px; flex-shrink:0; }
+#p13 .tip-pro {
+  background:#fff;
+  border-radius:12px;
+  padding:12px 14px;
+  border:2px solid #FFD700;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  box-shadow:0 2px 12px rgba(255,215,0,0.2);
+}
+#p13 .tip-star { font-size:22px; flex-shrink:0; }
+#p13 .tip-text { font-size:11px; line-height:1.5; color:var(--carbon); }
+#p13 .tip-text strong { color:#B8860B; }
+
+/* ===================================================================
+   PAGE 14 — BLOQUE 3 CONOCE TU TDAH
+   =================================================================== */
+#p14 {
+  background: linear-gradient(160deg,#FF6B35 0%,#FF8F00 100%);
+  padding: 28px 26px 80px;
+  color:#fff;
+}
+#p14 .bloque-tag { background:#fff; color:var(--orange); font-size:10px; font-weight:800; letter-spacing:2px; text-transform:uppercase; padding:5px 14px; border-radius:20px; margin-bottom:14px; display:inline-block; }
+#p14 h2 { font-size:22px; font-weight:900; margin-bottom:12px; line-height:1.2; }
+#p14 .truth-p { font-size:12px; line-height:1.6; color:rgba(255,255,255,0.9); margin-bottom:14px; }
+#p14 .observe-cards { display:flex; flex-direction:column; gap:10px; }
+#p14 .obs-card {
+  background:rgba(255,255,255,0.15);
+  border-radius:12px;
+  padding:12px 14px;
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  border:1px solid rgba(255,255,255,0.2);
+  backdrop-filter:blur(4px);
+}
+#p14 .obs-icon { font-size:22px; flex-shrink:0; }
+#p14 .obs-title { font-size:12px; font-weight:700; margin-bottom:2px; }
+#p14 .obs-desc  { font-size:10.5px; color:rgba(255,255,255,0.85); line-height:1.4; }
+
+/* ===================================================================
+   PAGE 15 — PLAN PERSONALIZADO
+   =================================================================== */
+#p15 {
+  background: var(--bg);
+  padding: 24px 22px 80px;
+}
+#p15 h2 { font-size:18px; font-weight:800; color:var(--violet-dark); margin-bottom:4px; }
+#p15 .sub { font-size:11px; color:#888; margin-bottom:14px; }
+#p15 .plan-items { display:flex; flex-direction:column; gap:8px; margin-bottom:12px; }
+#p15 .plan-row {
+  background:#fff;
+  border-radius:10px;
+  padding:11px 14px;
+  box-shadow:0 1px 8px rgba(0,0,0,0.05);
+}
+#p15 .plan-q { font-size:11.5px; font-weight:600; color:var(--violet-dark); margin-bottom:5px; display:flex; align-items:center; gap:6px; }
+#p15 .plan-line { border:none; border-bottom:1.5px dashed #DDD; width:100%; margin-top:2px; }
+#p15 .sleep-row { display:flex; gap:16px; }
+#p15 .sleep-field { flex:1; }
+#p15 .sleep-label { font-size:10px; color:#aaa; margin-bottom:4px; }
+#p15 .moti-box {
+  background: linear-gradient(135deg,var(--teal),#00A896);
+  border-radius:12px;
+  padding:12px 16px;
+  text-align:center;
+  color:#fff;
+  font-size:12px;
+  font-weight:600;
+  line-height:1.5;
+}
+
+/* ===================================================================
+   PAGE 16 — MITOS VS REALIDADES
+   =================================================================== */
+#p16 {
+  background: var(--bg);
+  padding: 24px 22px 80px;
+}
+#p16 h2 { font-size:18px; font-weight:800; color:var(--violet-dark); text-align:center; margin-bottom:14px; }
+#p16 .myths { display:flex; flex-direction:column; gap:8px; }
+#p16 .myth-pair { border-radius:10px; overflow:hidden; }
+#p16 .myth-row {
+  display:flex;
+  align-items:flex-start;
+  gap:8px;
+  padding:8px 12px;
+  font-size:11px;
+  line-height:1.4;
+}
+#p16 .m-bad { background:rgba(229,57,53,0.08); border-left:3px solid #E53935; }
+#p16 .m-good { background:rgba(76,175,80,0.08); border-left:3px solid #43A047; }
+#p16 .m-icon { font-size:14px; flex-shrink:0; margin-top:1px; }
+#p16 .m-text { color:var(--carbon); }
+#p16 .m-bad .m-text { text-decoration:line-through; color:#999; }
+
+/* ===================================================================
+   PAGE 17 — RIESGOS EN ADOLESCENCIA
+   =================================================================== */
+#p17 {
+  background: var(--night);
+  padding: 26px 24px 80px;
+  color:#fff;
+}
+#p17 .only-tag { background:var(--orange); color:#fff; font-size:10px; font-weight:800; letter-spacing:1px; text-transform:uppercase; padding:5px 14px; border-radius:20px; margin-bottom:14px; display:inline-block; }
+#p17 h2 { font-size:19px; font-weight:800; margin-bottom:12px; line-height:1.3; }
+#p17 .risks { display:flex; flex-direction:column; gap:8px; margin-bottom:14px; }
+#p17 .risk-item {
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,107,53,0.3);
+  border-radius:10px;
+  padding:11px 14px;
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+}
+#p17 .risk-icon { font-size:18px; flex-shrink:0; }
+#p17 .risk-title { font-size:12px; font-weight:700; color:#FFB088; margin-bottom:2px; }
+#p17 .risk-desc  { font-size:10.5px; color:rgba(255,255,255,0.75); line-height:1.4; }
+#p17 .shield-box {
+  background: linear-gradient(135deg,var(--teal),#00A896);
+  border-radius:12px;
+  padding:14px;
+  text-align:center;
+  color:var(--carbon);
+  font-size:13px;
+  font-weight:700;
+  line-height:1.4;
+}
+
+/* ===================================================================
+   PAGE 18 — CONCLUSIÓN CTA
+   =================================================================== */
+#p18 {
+  background: linear-gradient(145deg, var(--violet-dark) 0%, #3D1578 55%, var(--violet) 100%);
+  padding: 30px 28px 80px;
+  color:#fff;
+  text-align:center;
+}
+#p18 .rocket { font-size:52px; display:block; animation:float 3s ease-in-out infinite; margin-bottom:12px; }
+#p18 h2 { font-size:22px; font-weight:900; margin-bottom:8px; }
+#p18 h2 span { color:var(--teal); }
+#p18 .hook { font-size:11.5px; color:rgba(255,255,255,0.75); margin-bottom:16px; line-height:1.5; }
+#p18 .takeaways { text-align:left; background:rgba(255,255,255,0.08); border-radius:14px; padding:14px 16px; margin-bottom:14px; }
+#p18 .takeaway { font-size:11.5px; padding:5px 0; display:flex; gap:8px; align-items:flex-start; }
+#p18 .t-num { color:var(--teal); font-weight:800; flex-shrink:0; }
+#p18 .cta-btn {
+  display:inline-block;
+  background: linear-gradient(135deg,var(--teal),#00A896);
+  color:var(--carbon);
+  font-size:13px;
+  font-weight:700;
+  padding:13px 28px;
+  border-radius:30px;
+  margin-bottom:12px;
+  box-shadow:0 4px 20px rgba(0,201,167,0.4);
+  animation: glow 2.5s ease-in-out infinite;
+}
+#p18 .hashtags { font-size:10px; color:rgba(255,255,255,0.4); letter-spacing:0.5px; }
+
+/* ===================================================================
+   PAGE 19 — CONTRAPORTADA
+   =================================================================== */
+#p19 {
+  background: var(--violet-dark);
+  padding: 30px 26px 80px;
+  color:#fff;
+  text-align:center;
+  justify-content:center;
+  align-items:center;
+}
+#p19 .logo-circle {
+  width:70px; height:70px;
+  background: linear-gradient(135deg,var(--teal),var(--violet));
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:28px;
+  margin: 0 auto 16px;
+  box-shadow:0 0 30px rgba(0,201,167,0.3);
+}
+#p19 h2 { font-size:20px; font-weight:900; margin-bottom:4px; }
+#p19 .author-section {
+  background:rgba(255,255,255,0.07);
+  border-radius:14px;
+  padding:16px;
+  margin:16px 0;
+  border:1px solid rgba(255,255,255,0.12);
+}
+#p19 .author-name { font-size:15px; font-weight:700; color:#fff; margin-bottom:2px; }
+#p19 .author-title { font-size:11px; color:rgba(255,255,255,0.65); margin-bottom:6px; }
+#p19 .author-handle { font-size:14px; color:var(--teal); font-weight:700; }
+#p19 .credits { font-size:10px; color:rgba(255,255,255,0.4); line-height:1.7; margin-bottom:10px; }
+#p19 .disclaimer-mini {
+  background:rgba(255,255,255,0.05);
+  border-radius:8px;
+  padding:10px 12px;
+  font-size:9.5px;
+  color:rgba(255,255,255,0.45);
+  line-height:1.55;
+  margin-bottom:12px;
+}
+#p19 .quote-final {
+  font-style:italic;
+  font-size:12px;
+  color:rgba(255,255,255,0.7);
+  line-height:1.6;
+  margin-bottom:12px;
+}
+#p19 .quote-final span { color:var(--teal); font-style:normal; font-weight:700; }
+#p19 .built-by {
+  font-size:10px;
+  color:rgba(255,255,255,0.35);
+  padding-top:10px;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+#p19 .built-by a { color:var(--teal); text-decoration:none; font-weight:600; }
+
+/* ===================================================================
+   PAGE 20 — CTA "EL TRAJE A LA MEDIDA"
+   =================================================================== */
+#p20 {
+  background: linear-gradient(160deg, #0D1B2A 0%, #1A0533 60%, #0D1B2A 100%);
+  padding: 30px 26px 80px;
+  color: #fff;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+#p20 .app-badge {
+  background: linear-gradient(135deg, var(--teal), #00e0b8);
+  color: #0D1B2A;
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  padding: 5px 14px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  display: inline-block;
+}
+#p20 .app-icon {
+  font-size: 56px;
+  margin-bottom: 10px;
+  animation: float 3s ease-in-out infinite;
+}
+#p20 h2 {
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 4px;
+}
+#p20 h2 span { color: var(--teal); }
+#p20 .app-subtitle {
+  font-size: 13px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 20px;
+  font-weight: 400;
+}
+#p20 .features-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  width: 100%;
+  max-width: 360px;
+  margin: 0 auto 22px;
+}
+#p20 .feat-card {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(0,201,167,0.2);
+  border-radius: 12px;
+  padding: 12px 10px;
+  font-size: 11px;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.85);
+}
+#p20 .feat-card .feat-icon { font-size: 20px; margin-bottom: 5px; display: block; }
+#p20 .feat-card strong { color: var(--teal); font-weight: 700; font-size: 11.5px; display:block; margin-bottom:2px; }
+#p20 .cta-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: linear-gradient(135deg, var(--teal), #00e0b8);
+  color: #0D1B2A;
+  font-size: 14px;
+  font-weight: 800;
+  padding: 14px 28px;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 0 30px rgba(0,201,167,0.4), 0 4px 16px rgba(0,0,0,0.3);
+  animation: glow 2.5s ease-in-out infinite;
+  margin-bottom: 14px;
+}
+#p20 .cta-sub {
+  font-size: 10px;
+  color: rgba(255,255,255,0.35);
+}
+#p20 .cta-sub a { color: var(--teal); text-decoration: none; font-weight: 600; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<div class="ebook-viewport">
+
+<!-- ===== PAGE 1 — PORTADA ===== -->
+<div class="page active" id="p1">
+  <div class="deco-circle c1"></div>
+  <div class="deco-circle c2"></div>
+  <div class="deco-circle c3"></div>
+  <div class="badge-sticker animate a1">¿Tienes TDAH? Este ebook es para TI 🚀</div>
+
+  <span class="brain-emoji animate a2">🧠⚡</span>
+
+  <h1 class="animate a3">MITOS Y REALIDADES<br>DEL <span>TRATAMIENTO</span><br>DE TDAH</h1>
+
+  <p class="subtitle animate a4">Guía clínica para pacientes con TDAH: desmonta los mitos y toma el control de tu tratamiento</p>
+
+  <div class="author-badge animate a5">
+    <span>👩‍⚕️</span>
+    <span>Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" class="handle" style="color:#00C9A7;text-decoration:none;">@gabyneuropedia</a></span>
+  </div>
+
+  <div class="page-footer page-footer-light animate a6">
+    Basado en Guías Clínicas AINP &nbsp;|&nbsp; Material Educativo &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 2 — DISCLAIMER ===== -->
+<div class="page" id="p2">
+  <div style="flex:1; overflow-y:auto; padding: 32px 28px 10px;">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;" class="animate a1">
+      <span class="tag tag-orange">⚠️ Aviso Importante</span>
+    </div>
+
+    <div class="warn-header animate a2">
+      <span style="font-size:22px;">⚠️</span>
+      <span>ANTES DE CONTINUAR, LEE ESTO</span>
+    </div>
+    <div class="warn-body animate a3">
+      <p>Este ebook es un material <strong>100% educativo</strong>, de orientación y acompañamiento. Fue creado para ayudarte a entender el TDAH de forma clara y sin rodeos.</p>
+
+      <p><strong>NO reemplaza:</strong></p>
+      <ul class="no-list">
+        <li><span class="x-icon">✗</span> La consulta con tu médico o neurólogo</li>
+        <li><span class="x-icon">✗</span> Un diagnóstico clínico profesional</li>
+        <li><span class="x-icon">✗</span> Las recomendaciones específicas de tu especialista</li>
+      </ul>
+
+      <p>Cada persona con TDAH es diferente. Lo que funciona para alguien más puede no funcionar para ti exactamente igual.</p>
+
+      <div class="final-note animate a4">
+        🩺 Si tienes dudas sobre tu tratamiento,<br>
+        <strong>habla SIEMPRE con tu equipo de salud.</strong>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer animate a5">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">Built by Dr. Victor Garcia M at 48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 3 — INTRO ===== -->
+<div class="page" id="p3">
+  <div style="flex:1;overflow-y:auto;padding:28px 28px 10px;">
+    <span class="tag animate a1">INTRODUCCIÓN</span>
+    <h2 class="animate a2" style="margin-top:8px;">¿Qué onda con<br><span>mi cerebro?</span></h2>
+    <div class="divider" style="margin:10px 0 12px 0;"></div>
+
+    <p class="intro-p animate a3">Imagina que tu cerebro es una computadora de última generación. Tiene un procesador increíblemente potente, pero a veces el sistema operativo hace cosas raras:</p>
+
+    <div class="tabs-row animate a4">
+      <div class="tab-card tc-blue">
+        <span class="t-emoji">🔵</span>
+        Abre 50 pestañas al mismo tiempo
+      </div>
+      <div class="tab-card tc-orange">
+        <span class="t-emoji">🟠</span>
+        Corre a 300 km/h y luego se congela
+      </div>
+      <div class="tab-card tc-green">
+        <span class="t-emoji">🟢</span>
+        Cuesta cerrar lo que ya no necesita
+      </div>
+    </div>
+
+    <div class="stat-box animate a5">
+      <span class="stat-big">5–7%</span>
+      <p class="stat-label">de niños y pacientes tienen TDAH<br>— al menos 1 persona por salón de clases</p>
+    </div>
+
+    <p class="empow animate a6">No eres "raro/a". Tu cerebro simplemente procesa el mundo diferente. ⚡</p>
+  </div>
+  <div class="page-footer animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 4 — 3 MODOS ===== -->
+<div class="page" id="p4">
+  <div style="flex:1;overflow-y:auto;padding:26px 24px 10px;">
+    <h2 class="animate a1">El TDAH viene en<br>3 <span style="color:var(--violet)">"modos"</span></h2>
+    <div class="divider" style="margin:10px 0 14px 0;"></div>
+
+    <div class="mode-cards">
+      <div class="mode-card mc-blue animate a2">
+        <span class="mode-icon">🎯</span>
+        <div>
+          <div class="mode-title">MODO DESENFOCADO</div>
+          <div class="mode-sub">Predominantemente Inatento</div>
+          <ul class="mode-bullets">
+            <li>Se te escapa la atención constantemente</li>
+            <li>Estás "en las nubes" sin querer</li>
+            <li>Empiezas cosas y las dejas a medias</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mode-card mc-orange animate a3">
+        <span class="mode-icon">⚡</span>
+        <div>
+          <div class="mode-title">MODO TURBO</div>
+          <div class="mode-sub">Predominantemente Hiperactivo-Impulsivo</div>
+          <ul class="mode-bullets">
+            <li>Necesitas moverte, hablar, actuar YA</li>
+            <li>La impulsividad manda antes que el filtro</li>
+            <li>Las emociones se desordenan rápido</li>
+          </ul>
+        </div>
+      </div>
+      <div class="mode-card mc-violet animate a4">
+        <span class="mode-icon">🔀</span>
+        <div>
+          <div class="mode-title">MODO COMBINADO</div>
+          <div class="mode-sub">El más frecuente en pacientes</div>
+          <ul class="mode-bullets">
+            <li>Una mezcla de los dos anteriores</li>
+            <li>Puede variar según el día y el estrés</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <p class="cta-q animate a5">¿En cuál te reconoces? ✋</p>
+  </div>
+  <div class="page-footer animate a5">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 5 — BLOQUE 1 INTRO ===== -->
+<div class="page" id="p5">
+  <div style="flex:1;overflow-y:auto;padding:28px 28px 10px;">
+    <span class="bloque-tag animate a1">BLOQUE 1</span>
+    <h2 class="animate a2">El Dilema de<br>las <span>Pastillas</span> 💊</h2>
+
+    <div class="chat-bubble animate a3">"¿Me van a dar medicación?"</div>
+    <div class="chat-bubble animate a4">"¿Eso me cambia la personalidad?"</div>
+    <div class="chat-bubble animate a5">"¿Me vuelvo zombie?"</div>
+
+    <p class="answer-p animate a5">Tranqui. La medicación para el TDAH <strong style="color:var(--teal);">NO es obligatoria para todos.</strong> Las guías clínicas AINP establecen que debe ser parte de un plan COMPLETO que incluye terapia, hábitos y apoyo escolar.</p>
+
+    <div class="analogy-box animate a6">
+      👓 Si usas lentes, los lentes no "curan" tus ojos, pero te ayudan a ver mejor. La medicación hace algo parecido con tu atención. <strong>No borra quien eres — amplifica lo mejor de ti.</strong>
+    </div>
+  </div>
+  <div class="page-footer page-footer-light animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 6 — 3 CRITERIOS ===== -->
+<div class="page" id="p6">
+  <div style="flex:1;overflow-y:auto;padding:26px 24px 10px;">
+    <span class="tag animate a1">Guías AINP</span>
+    <h2 style="margin-top:8px;font-size:17px;font-weight:800;color:var(--violet-dark);margin-bottom:14px;" class="animate a2">
+      ¿Cuándo recomiendan los especialistas considerar medicación?
+    </h2>
+
+    <div class="criteria-list">
+      <div class="criterion animate a3">
+        <div class="crit-num">1</div>
+        <div>
+          <div class="crit-title">¿Los síntomas llevan más de 9–12 meses?</div>
+          <div class="crit-sub">No es algo que "se le pasó" rápido. Hay que observarlo en el tiempo.</div>
+        </div>
+      </div>
+      <div class="criterion animate a4">
+        <div class="crit-num">2</div>
+        <div>
+          <div class="crit-title">¿Pasa en TODOS los lugares?</div>
+          <div class="crit-sub">En casa, en la escuela, con amigos... no solo en un contexto específico.</div>
+        </div>
+      </div>
+      <div class="criterion animate a5">
+        <div class="crit-num">3</div>
+        <div>
+          <div class="crit-title">¿Ya se probó terapia conductual sin suficiente mejora?</div>
+          <div class="crit-sub">Primero se intenta el abordaje no farmacológico de forma seria.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="key-box animate a6">
+      🔑 La medicación <strong>NO es el primer paso automático.</strong><br>
+      Es parte de una evaluación cuidadosa — la decisión siempre es compartida con tu familia.
+    </div>
+  </div>
+  <div class="page-footer animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 7 — CIENCIA SLIDERS ===== -->
+<div class="page" id="p7">
+  <div style="flex:1;overflow-y:auto;padding:26px 24px 10px;">
+    <span class="tag animate a1" style="background:rgba(255,255,255,0.15);color:#fff;">🔬 LA CIENCIA, PERO EN FÁCIL</span>
+    <h2 class="animate a2" style="margin-top:10px;">Tu cerebro tiene<br><span>dos sliders</span></h2>
+
+    <p class="intro-sci animate a3">En el TDAH hay dos mensajeros químicos que no están en el nivel correcto en la corteza prefrontal:</p>
+
+    <div class="neuros animate a4">
+      <div class="neuro-pill np-violet">
+        <div class="neuro-label">🟣 DOPAMINA</div>
+        <div class="neuro-role">Motivación y enfoque</div>
+      </div>
+      <div class="neuro-pill np-blue">
+        <div class="neuro-label">🔵 NORADRENALINA</div>
+        <div class="neuro-role">Alerta y control</div>
+      </div>
+    </div>
+
+    <div class="slider-box animate a5">
+      <div class="slider-row">
+        <div class="slider-label"><span>📡 SEÑAL (lo que importa)</span><span style="color:var(--teal)">45%</span></div>
+        <div class="slider-track"><div class="slider-fill-signal"></div></div>
+      </div>
+      <div class="slider-row">
+        <div class="slider-label"><span>📢 RUIDO (lo que distrae)</span><span style="color:var(--orange)">82%</span></div>
+        <div class="slider-track"><div class="slider-fill-noise"></div></div>
+      </div>
+    </div>
+
+    <p class="med-note animate a6">
+      Los medicamentos rebalancean esos sliders:<br>
+      → <strong>Estimulantes</strong> (metilfenidato): bajan el ruido<br>
+      → <strong>No estimulantes</strong> (atomoxetina): suben la señal<br>
+      <em style="color:rgba(255,255,255,0.55)">No crean nada artificial. Solo ajustan lo que ya existe. ⚙️</em>
+    </p>
+  </div>
+  <div class="page-footer page-footer-light animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 8 — TIPOS DE MEDICACIÓN ===== -->
+<div class="page" id="p8">
+  <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
+    <span class="tag animate a1">Farmacología AINP</span>
+    <h2 class="animate a2" style="margin-top:8px;font-size:18px;font-weight:800;color:var(--violet-dark);margin-bottom:14px;">
+      Dos familias de medicamentos
+    </h2>
+
+    <div class="meds-grid animate a3">
+      <div class="med-card mc-est">
+        <span class="med-icon">💜</span>
+        <div class="med-name">ESTIMULANTES</div>
+        <div class="med-ex">Metilfenidato (Ritalín, Concerta)</div>
+        <ul class="med-facts">
+          <li>Estándar desde 1956</li>
+          <li>Actúan en pocas horas</li>
+          <li>Versiones corta y prolongada</li>
+          <li>No generan adicción si se usan bien</li>
+        </ul>
+      </div>
+      <div class="med-card mc-noe">
+        <span class="med-icon">🩵</span>
+        <div class="med-name">NO ESTIMULANTES</div>
+        <div class="med-ex">Atomoxetina (Strattera), Guanfacina</div>
+        <ul class="med-facts">
+          <li>Cuando estimulantes no funcionan</li>
+          <li>Tardan semanas en hacer efecto</li>
+          <li>Útiles si hay ansiedad o tics</li>
+          <li>Efecto homogéneo y duradero</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="warning-strip animate a4">
+      <strong>⚠️ Sobre efectos secundarios:</strong> Pueden existir (menos apetito, insomnio, cefalea). Son monitoreados por tu médico. Si una opción no funciona, <em>se ajusta</em>. Es un proceso 100% personalizado. 🎯
+    </div>
+
+    <div style="text-align:center;margin-top:10px;" class="animate a5">
+      <span style="font-size:11px;color:#888;font-style:italic;">Cada paciente tiene su propia curva de dosis-respuesta.</span>
+    </div>
+  </div>
+  <div class="page-footer animate a5">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 9 — BLOQUE 2 MULTIMODAL ===== -->
+<div class="page" id="p9">
+  <div style="flex:1;overflow-y:auto;padding:26px 26px 10px;">
+    <span class="bloque-tag animate a1">BLOQUE 2</span>
+    <h2 class="animate a2">Más allá de<br>las <span>Pastillas</span> 🌱</h2>
+
+    <p class="science-p animate a3">La ciencia es clara: el mejor tratamiento para el TDAH es <strong style="color:var(--teal);">MULTIMODAL</strong>. Funciona mejor combinando varias estrategias. El tratamiento es un equipo, no un jugador solitario.</p>
+
+    <div class="team-grid animate a4">
+      <div class="team-item">
+        <span class="team-icon">🏋️</span>
+        <span class="team-label">Hábitos físicos</span>
+      </div>
+      <div class="team-item">
+        <span class="team-icon">🧠</span>
+        <span class="team-label">Terapia mental</span>
+      </div>
+      <div class="team-item">
+        <span class="team-icon">😴</span>
+        <span class="team-label">Sueño</span>
+      </div>
+      <div class="team-item">
+        <span class="team-icon">🥗</span>
+        <span class="team-label">Nutrición</span>
+      </div>
+      <div class="team-item">
+        <span class="team-icon">📋</span>
+        <span class="team-label">Apoyo escolar</span>
+      </div>
+    </div>
+
+    <div class="power-line animate a5">
+      ⚡ Solos son buenos.<br><strong style="color:var(--teal)">Juntos son imbatibles.</strong>
+    </div>
+
+    <p style="font-size:12px;color:rgba(255,255,255,0.75);margin-top:12px;text-align:center;" class="animate a6">
+      Y lo mejor: muchas de estas estrategias las puedes activar <strong style="color:#fff;">TÚ</strong>, desde ya, sin esperar a nadie. 💪
+    </p>
+  </div>
+  <div class="page-footer page-footer-light animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 10 — FUNCIONES EJECUTIVAS ===== -->
+<div class="page" id="p10">
+  <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
+    <span class="tag animate a1">🧠 Herramienta #1</span>
+    <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Entrena tus funciones ejecutivas</h2>
+    <p class="sub animate a3">El TDAH no es un déficit de habilidades — es un déficit de <em>ejecución</em>. El gerente mental a veces no aparece. Aquí cómo convocarlo:</p>
+
+    <div class="fe-cards">
+      <div class="fe-card fec-a animate a3">
+        <span class="fe-icon">⏰</span>
+        <div>
+          <div class="fe-title">Auto-monitoreo</div>
+          <div class="fe-desc">Pon una alarma cada 20 min y pregúntate: "¿Estoy enfocado en lo que debo hacer?"</div>
+        </div>
+      </div>
+      <div class="fe-card fec-b animate a4">
+        <span class="fe-icon">🌊</span>
+        <div>
+          <div class="fe-title">Regulación emocional</div>
+          <div class="fe-desc">Cuando sientas que explotas, nombra la emoción antes de actuar. "Estoy frustrado."</div>
+        </div>
+      </div>
+      <div class="fe-card fec-a animate a5">
+        <span class="fe-icon">📋</span>
+        <div>
+          <div class="fe-title">Planeamiento visual</div>
+          <div class="fe-desc">Usa agenda, app o pizarrón. Convierte lo abstracto en visual y concreto.</div>
+        </div>
+      </div>
+      <div class="fe-card fec-b animate a6">
+        <span class="fe-icon">🎙️</span>
+        <div>
+          <div class="fe-title">Memoria de trabajo</div>
+          <div class="fe-desc">Listas cortas, notas rápidas, grabaciones de voz. Externaliza lo que tu mente pierde.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="quote-box" style="margin-top:10px;">
+      No se trata de "esforzarte más".<br>
+      <span>Se trata de diseñar tu entorno para que te ayude. ⚙️</span>
+    </div>
+  </div>
+  <div class="page-footer animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 11 — SUEÑO ===== -->
+<div class="page" id="p11">
+  <div style="flex:1;overflow-y:auto;padding:24px 24px 10px;">
+    <span class="tag animate a1" style="background:rgba(255,255,255,0.12);color:#fff;">😴 Herramienta #2</span>
+    <h2 class="animate a2" style="margin-top:10px;">El sueño es tu<br><span>superpoder oculto</span></h2>
+    <p class="hook animate a3">Dormir mal empeora TODOS los síntomas del TDAH. La falta de sueño es como quitarle RAM a tu procesador.</p>
+
+    <div class="two-cols animate a4">
+      <div class="col-bad">
+        <div class="col-header">😵 Sin sueño</div>
+        <div class="col-item">❌ Atención en picada</div>
+        <div class="col-item">❌ Emociones disparadas</div>
+        <div class="col-item">❌ Impulsividad al máximo</div>
+        <div class="col-item">❌ El medicamento funciona menos</div>
+      </div>
+      <div class="col-good">
+        <div class="col-header">✅ Rutina de sueño</div>
+        <div class="col-item">🌙 Misma hora todos los días</div>
+        <div class="col-item">📵 Sin pantallas 60 min antes</div>
+        <div class="col-item">🌡️ Cuarto fresco y oscuro</div>
+        <div class="col-item">🎧 Música instrumental o ruido blanco</div>
+      </div>
+    </div>
+
+    <div class="hours-badge animate a5">
+      <span class="hours-big">8–9 h</span>
+      <div class="hours-label">Meta de sueño para pacientes<br>No es opcional — es mantenimiento básico</div>
+    </div>
+  </div>
+  <div class="page-footer page-footer-light animate a5">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 12 — MOVIMIENTO Y NUTRICIÓN ===== -->
+<div class="page" id="p12">
+  <div style="flex:1;overflow-y:auto;padding:22px 20px 10px;">
+    <span class="tag animate a1">🏃 Herramienta #3</span>
+    <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:12px;">Tu cuerpo también es parte del plan</h2>
+
+    <div class="two-halves animate a3">
+      <div class="half h-move">
+        <div class="half-title">🏃 MOVIMIENTO</div>
+        <div class="half-sub">El ejercicio produce dopamina natural. Es medicación sin pastilla.</div>
+        <div class="half-item">🎵 Bailar tu playlist</div>
+        <div class="half-item">🚶 Caminar con podcast</div>
+        <div class="half-item">🚴 Bici, natación, deporte</div>
+        <div class="half-item">⚽ Cualquier actividad activa</div>
+      </div>
+      <div class="half h-food">
+        <div class="half-title">🥗 NUTRICIÓN</div>
+        <div class="half-sub">No hay dieta mágica, pero sí hábitos que ayudan.</div>
+        <div class="half-item">🥚 Proteína en el desayuno</div>
+        <div class="half-item">🐟 Omega-3 (pescado, nueces)</div>
+        <div class="half-item">🍬 Menos azúcar refinada</div>
+        <div class="half-item">💧 Agua suficiente</div>
+      </div>
+    </div>
+
+    <div class="stat-strip animate a4">
+      <div class="stat-num">20<br><span style="font-size:14px">min</span></div>
+      <div class="stat-text">de ejercicio aeróbico mejoran el enfoque por varias horas.<br><em style="font-size:9px;opacity:0.8">Comer bien no cura el TDAH — pero descuidarlo sí lo empeora.</em></div>
+    </div>
+
+    <p style="text-align:center;font-size:11px;color:#888;margin-top:10px;font-style:italic;" class="animate a5">¿Cuál actividad física disfrutas más? Ese es tu punto de inicio. 🎯</p>
+  </div>
+  <div class="page-footer animate a5">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 13 — ENTORNO ESCOLAR ===== -->
+<div class="page" id="p13">
+  <div style="flex:1;overflow-y:auto;padding:22px 22px 10px;">
+    <span class="tag animate a1">📚 Herramienta #4</span>
+    <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Hackea tu entorno de estudio</h2>
+    <p class="lead animate a3">"El TDAH no es falta de inteligencia — es falta de las condiciones correctas para rendir."</p>
+
+    <div class="adapt-grid animate a4">
+      <div class="adapt-item"><span class="adapt-pin">📌</span>Sentarte lejos de distracciones</div>
+      <div class="adapt-item"><span class="adapt-pin">📌</span>Instrucciones claras y por escrito</div>
+      <div class="adapt-item"><span class="adapt-pin">📌</span>Tiempo extra en exámenes</div>
+      <div class="adapt-item"><span class="adapt-pin">📌</span>Tareas en pasos pequeños</div>
+      <div class="adapt-item"><span class="adapt-pin">📌</span>Recesos periódicos</div>
+      <div class="adapt-item"><span class="adapt-pin">📌</span>Organizador semanal</div>
+    </div>
+
+    <div class="tip-pro animate a5">
+      <span class="tip-star">⭐</span>
+      <div class="tip-text">
+        <strong>Técnica Pomodoro:</strong> 25 minutos de trabajo → 5 minutos de descanso. Repite 4 veces → descansa 15 min. Tu cerebro con TDAH <em>funciona mejor en sprints cortos.</em>
+      </div>
+    </div>
+
+    <p style="text-align:center;font-size:11.5px;color:var(--violet);font-weight:600;margin-top:10px;" class="animate a6">Tu entorno no es un detalle.<br>Es parte de tu tratamiento. 🏗️</p>
+  </div>
+  <div class="page-footer animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 14 — BLOQUE 3 CONOCE TU TDAH ===== -->
+<div class="page" id="p14">
+  <div style="flex:1;overflow-y:auto;padding:26px 26px 10px;">
+    <span class="bloque-tag animate a1">BLOQUE 3</span>
+    <h2 class="animate a2">¿Qué es lo mejor<br>para <span style="color:#fff;text-decoration:underline;text-decoration-color:rgba(255,255,255,0.4)">TI</span>? 🔍</h2>
+
+    <p class="truth-p animate a3"><strong style="color:#fff;">La verdad que nadie te dice:</strong> No existe un tratamiento universal para el TDAH. Cada persona tiene su propio "perfil TDAH" con síntomas, horarios y contextos únicos.</p>
+
+    <div class="observe-cards">
+      <div class="obs-card animate a4">
+        <span class="obs-icon">📓</span>
+        <div>
+          <div class="obs-title">Lleva un diario de síntomas (1 semana)</div>
+          <div class="obs-desc">Anota: hora, situación, cómo te sentiste, qué funcionó y qué no.</div>
+        </div>
+      </div>
+      <div class="obs-card animate a5">
+        <span class="obs-icon">🔄</span>
+        <div>
+          <div class="obs-title">Identifica tus patrones</div>
+          <div class="obs-desc">¿A qué hora te concentras mejor? ¿Qué emociones detonan tus síntomas?</div>
+        </div>
+      </div>
+      <div class="obs-card animate a6">
+        <span class="obs-icon">💬</span>
+        <div>
+          <div class="obs-title">Usa esa info con tu especialista</div>
+          <div class="obs-desc">Llega a tu consulta con datos, no solo con "no sé". Tú eres el experto en ti mismo. 🧩</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer page-footer-light animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 15 — PLAN PERSONALIZADO ===== -->
+<div class="page" id="p15">
+  <div style="flex:1;overflow-y:auto;padding:22px 22px 10px;">
+    <span class="tag animate a1">🗂️ Mi Plan</span>
+    <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Mi combo anti-TDAH</h2>
+    <p class="sub animate a3">Nadie puede elegir por ti. Pero tú puedes organizar lo que ya sabes.</p>
+
+    <div class="plan-items animate a4">
+      <div class="plan-row">
+        <div class="plan-q">📌 Lo que ya hago y me funciona:</div>
+        <hr class="plan-line">
+      </div>
+      <div class="plan-row">
+        <div class="plan-q">📌 Lo que quiero probar esta semana:</div>
+        <hr class="plan-line">
+      </div>
+      <div class="plan-row">
+        <div class="plan-q">📌 Lo que quiero hablar con mi especialista:</div>
+        <hr class="plan-line">
+      </div>
+      <div class="plan-row">
+        <div class="plan-q">😴 Mi horario de sueño meta:</div>
+        <div class="sleep-row">
+          <div class="sleep-field">
+            <div class="sleep-label">Acostarse:</div>
+            <hr class="plan-line">
+          </div>
+          <div class="sleep-field">
+            <div class="sleep-label">Levantarse:</div>
+            <hr class="plan-line">
+          </div>
+        </div>
+      </div>
+      <div class="plan-row">
+        <div class="plan-q">🏃 Mi actividad física esta semana:</div>
+        <hr class="plan-line">
+      </div>
+    </div>
+
+    <div class="moti-box animate a5">
+      🌱 Un cambio pequeño sostenido vale más que diez cambios que duras 2 días.<br>
+      <strong>¡Ya tomaste el primer paso! 🎉</strong>
+    </div>
+  </div>
+  <div class="page-footer animate a5">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 16 — MITOS VS REALIDADES ===== -->
+<div class="page" id="p16">
+  <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
+    <span class="tag animate a1">🚫 Desmitificando</span>
+    <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:14px;">Mitos que ya puedes dejar atrás</h2>
+
+    <div class="myths">
+      <div class="myth-pair animate a3">
+        <div class="myth-row m-bad"><span class="m-icon">❌</span><span class="m-text">"El TDAH es solo de niños pequeños"</span></div>
+        <div class="myth-row m-good"><span class="m-icon">✅</span><span class="m-text">Persiste en adolescencia y adultez. Cambia cómo se manifiesta, no desaparece solo.</span></div>
+      </div>
+      <div class="myth-pair animate a4">
+        <div class="myth-row m-bad"><span class="m-icon">❌</span><span class="m-text">"Si puedes concentrarte en videojuegos, no tienes TDAH"</span></div>
+        <div class="myth-row m-good"><span class="m-icon">✅</span><span class="m-text">El TDAH es dificultad para ELEGIR en qué concentrarse. Los juegos activan dopamina de forma inmediata.</span></div>
+      </div>
+      <div class="myth-pair animate a5">
+        <div class="myth-row m-bad"><span class="m-icon">❌</span><span class="m-text">"La medicación te cambia la personalidad"</span></div>
+        <div class="myth-row m-good"><span class="m-icon">✅</span><span class="m-text">Te ayuda a ser MÁS tú mismo/a al reducir el ruido que te impedía expresarte.</span></div>
+      </div>
+      <div class="myth-pair animate a6">
+        <div class="myth-row m-bad"><span class="m-icon">❌</span><span class="m-text">"Con más esfuerzo y disciplina se soluciona"</span></div>
+        <div class="myth-row m-good"><span class="m-icon">✅</span><span class="m-text">El TDAH tiene base neurológica. Es como pedirle a alguien con miopía que "se esfuerce más en ver".</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="page-footer animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 17 — RIESGOS ADOLESCENCIA ===== -->
+<div class="page" id="p17">
+  <div style="flex:1;overflow-y:auto;padding:24px 24px 10px;">
+    <span class="only-tag animate a1">Solo para pacientes 👤</span>
+    <h2 class="animate a2" style="font-size:18px;line-height:1.3;">Lo que nadie te cuenta sobre el TDAH en la adolescencia</h2>
+    <p style="font-size:11px;color:rgba(255,255,255,0.6);margin:8px 0 14px;line-height:1.5;" class="animate a3">La adolescencia ya es intensa de por sí. Con TDAH, algunos riesgos son más altos. Conocerlos es la primera forma de protegerte.</p>
+
+    <div class="risks">
+      <div class="risk-item animate a4">
+        <span class="risk-icon">⚠️</span>
+        <div>
+          <div class="risk-title">Mayor riesgo de ansiedad y depresión</div>
+          <div class="risk-desc">No es "drama". Es neurobiología. Busca apoyo si lo sientes.</div>
+        </div>
+      </div>
+      <div class="risk-item animate a5">
+        <span class="risk-icon">⚠️</span>
+        <div>
+          <div class="risk-title">Mayor sensibilidad al rechazo social</div>
+          <div class="risk-desc">El cerebro con TDAH procesa las críticas más intensamente.</div>
+        </div>
+      </div>
+      <div class="risk-item animate a6">
+        <span class="risk-icon">⚠️</span>
+        <div>
+          <div class="risk-title">Autoestima golpeada</div>
+          <div class="risk-desc">Años de "no lo logras" dejan marca. Necesitas reescribir ese relato contigo y con tu terapeuta.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="shield-box animate a6">
+      🛡️ <strong>Conocerte es protegerte.</strong><br>
+      <span style="font-size:11px;font-weight:400;">El tratamiento correcto es protección real.</span>
+    </div>
+  </div>
+  <div class="page-footer page-footer-light animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 18 — CONCLUSIÓN CTA ===== -->
+<div class="page" id="p18">
+  <div style="flex:1;overflow-y:auto;padding:28px 28px 10px;">
+    <span class="rocket animate a1">🚀</span>
+    <h2 class="animate a2">¿Y ahora <span>qué?</span></h2>
+    <p class="hook animate a3">Has llegado al final de este ebook. Pero esto no es el final — es el inicio de algo.</p>
+
+    <div class="takeaways animate a4">
+      <div class="takeaway"><span class="t-num">1️⃣</span><span>Tu cerebro no está roto — funciona diferente</span></div>
+      <div class="takeaway"><span class="t-num">2️⃣</span><span>El TDAH tiene tratamiento efectivo y personalizable</span></div>
+      <div class="takeaway"><span class="t-num">3️⃣</span><span>La medicación es UNA opción dentro de un plan completo</span></div>
+      <div class="takeaway"><span class="t-num">4️⃣</span><span>Puedes tomar acción hoy: sueño, movimiento, entorno</span></div>
+      <div class="takeaway"><span class="t-num">5️⃣</span><span>Conocerte es tu mayor herramienta</span></div>
+    </div>
+
+    <div class="cta-btn animate a5">
+      📅 Habla con tu especialista →
+    </div>
+
+    <p style="font-size:12px;color:rgba(255,255,255,0.8);font-style:italic;line-height:1.5;margin-bottom:8px;" class="animate a6">
+      Tú no "tienes" TDAH. Tú ERES una persona con un cerebro que funciona diferente — y eso puede ser una <strong style="color:var(--teal);">fortaleza enorme.</strong> ⚡
+    </p>
+
+    <p class="hashtags animate a6">#MiCerebro &nbsp; #ModTurbo &nbsp; #TDAH &nbsp; #gabyneuropedia</p>
+  </div>
+  <div class="page-footer page-footer-light animate a6">
+    Dra. María Gabriela Jiménez &nbsp;·&nbsp; <a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;">@gabyneuropedia</a> &nbsp;|&nbsp; <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </div>
+</div>
+
+<!-- ===== PAGE 19 — CONTRAPORTADA ===== -->
+<div class="page" id="p19">
+  <div style="flex:1;overflow-y:auto;padding:28px 26px 10px;display:flex;flex-direction:column;align-items:center;">
+    <div class="logo-circle animate a1">🧠</div>
+
+    <h2 class="animate a2" style="font-size:18px;margin-bottom:6px;">Mitos y Realidades del Tratamiento de TDAH</h2>
+    <p style="font-size:11px;color:rgba(255,255,255,0.5);margin-bottom:14px;" class="animate a3">Guía clínica para pacientes con TDAH</p>
+
+    <div class="author-section animate a4">
+      <div class="author-name">Dra. María Gabriela Jiménez</div>
+      <div class="author-title">Neuropsicóloga Infanto-Juvenil</div>
+      <div class="author-handle"><a href="https://www.instagram.com/gabyneuropedia/" target="_blank" style="color:inherit;text-decoration:none;font-weight:700;">@gabyneuropedia</a></div>
+    </div>
+
+    <div class="credits animate a5">
+      Basado en: Guías AINP — Tratamiento Multimodal en TDAH<br>
+      Literatura clínica especializada en neuropsicología infanto-juvenil<br>
+      Intervención psicopedagógica Vidaurre &amp; Wojnaroski (Ohio State University)
+    </div>
+
+    <div class="disclaimer-mini animate a6">
+      Material estrictamente educativo. No constituye diagnóstico ni prescripción médica. Úsalo como complemento, nunca como sustituto de la atención clínica profesional.
+    </div>
+
+    <p class="quote-final animate a6">
+      "El conocimiento sobre tu cerebro es la<br>
+      <span>primera herramienta de tu tratamiento.</span>"
+    </p>
+
+    <div class="built-by animate a6">
+      Built by Dr. Victor Garcia M at <a href="https://48hours.live" target="_blank">48hours.live</a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== PAGE 20 — CTA "EL TRAJE A LA MEDIDA" ===== -->
+<div class="page" id="p20">
+  <div class="app-badge animate a1">Mini-App Clínica · Nuevo</div>
+  <div class="app-icon animate a2">🧥🧠</div>
+
+  <h2 class="animate a3">EL TRAJE<br>A LA <span>MEDIDA</span></h2>
+  <p class="app-subtitle animate a4">Monitoreo Clínico TDAH</p>
+
+  <div class="features-grid animate a5">
+    <div class="feat-card">
+      <span class="feat-icon">📋</span>
+      <strong>Registro diario</strong>
+      Síntomas, medicación y estado emocional en un solo lugar
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">📈</span>
+      <strong>Progreso visual</strong>
+      Gráficas semanales para ver tu evolución real
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">⏰</span>
+      <strong>Recordatorios</strong>
+      Alertas de medicación y rutinas personalizadas
+    </div>
+    <div class="feat-card">
+      <span class="feat-icon">💬</span>
+      <strong>Reporte para tu médico</strong>
+      Exporta datos de seguimiento a tu consulta
+    </div>
+  </div>
+
+  <a href="https://48hours.live" target="_blank" class="cta-btn animate a6">
+    🚀 Quiero mi Traje a la Medida
+  </a>
+
+  <p class="cta-sub animate a6">
+    Diseñada por <a href="https://www.instagram.com/gabyneuropedia/" target="_blank">@gabyneuropedia</a> · Desarrollada en <a href="https://48hours.live" target="_blank">48hours.live</a>
+  </p>
+</div>
+
+</div><!-- /.ebook-viewport -->
+
+<!-- Navigation -->
+<div class="nav-wrap">
+  <button class="nav-btn" onclick="prevPage()" title="Anterior">←</button>
+  <span class="nav-counter"><span id="current">1</span> / <span id="total">20</span></span>
+  <button class="nav-btn" onclick="nextPage()" title="Siguiente">→</button>
+</div>
+
+<script>
+let current = 1;
+const total = 20;
+document.getElementById('total').textContent = total;
+
+function showPage(n) {
+  if (n < 1) n = 1;
+  if (n > total) n = total;
+
+  const prev = document.querySelector('.page.active');
+  const next = document.getElementById('p' + n);
+
+  if (prev === next) return;
+
+  if (prev) {
+    prev.classList.remove('active');
+    prev.style.transform = n > current ? 'translateX(-40px)' : 'translateX(40px)';
+    setTimeout(() => { if(prev) prev.style.transform = ''; }, 450);
+  }
+
+  current = n;
+  next.classList.add('active');
+  next.style.transform = 'translateX(0)';
+
+  document.getElementById('current').textContent = n;
+  document.getElementById('progressBar').style.width = (n / total * 100) + '%';
+}
+
+function nextPage() { showPage(current + 1); }
+function prevPage() { showPage(current - 1); }
+
+// Keyboard navigation
+document.addEventListener('keydown', e => {
+  if (e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); nextPage(); }
+  if (e.key === 'ArrowLeft') { e.preventDefault(); prevPage(); }
+});
+
+// Touch/swipe support
+let touchStartX = 0;
+document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  if (Math.abs(dx) > 50) { dx < 0 ? nextPage() : prevPage(); }
+}, { passive: true });
+
+// Initialize
+showPage(1);
+</script>
+</body>
+</html>
+
