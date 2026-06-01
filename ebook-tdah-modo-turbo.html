@@ -967,9 +967,215 @@ body {
   color: rgba(255,255,255,0.35);
 }
 #p20 .cta-sub a { color: var(--teal); text-decoration: none; font-weight: 600; }
+
+a[href="https://48hours.live"]:not(.cta-btn) {
+  color: #00E5FF !important;
+  text-decoration-color: rgba(0,229,255,0.45);
+}
+
+body.auth-locked .ebook-viewport,
+body.auth-locked .nav-wrap,
+body.auth-locked .progress-bar {
+  pointer-events: none;
+  filter: blur(10px) saturate(0.75);
+  opacity: 0.2;
+}
+
+.login-gate {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background:
+    radial-gradient(circle at 22% 18%, rgba(0,229,255,0.2), transparent 28%),
+    radial-gradient(circle at 78% 8%, rgba(123,47,190,0.34), transparent 34%),
+    linear-gradient(145deg, rgba(13,27,42,0.96), rgba(26,5,51,0.96));
+}
+
+body.auth-locked .login-gate { display: flex; }
+
+.login-card {
+  width: min(420px, 100%);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 16px;
+  background: rgba(255,255,255,0.94);
+  box-shadow: 0 24px 80px rgba(0,0,0,0.42);
+  padding: 28px;
+}
+
+.login-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.login-brand-icon {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--violet), var(--teal));
+  color: var(--white);
+  font-size: 23px;
+}
+
+.login-brand strong {
+  display: block;
+  color: var(--violet-dark);
+  font-size: 18px;
+  line-height: 1.1;
+}
+
+.login-brand span {
+  display: block;
+  color: rgba(26,5,51,0.58);
+  font-size: 12px;
+  margin-top: 3px;
+}
+
+.login-form {
+  display: grid;
+  gap: 12px;
+}
+
+.login-field {
+  display: grid;
+  gap: 6px;
+  color: var(--violet-dark);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.login-field input {
+  width: 100%;
+  border: 1px solid rgba(26,5,51,0.16);
+  border-radius: 10px;
+  background: var(--white);
+  color: var(--carbon);
+  font: 500 14px var(--font);
+  padding: 13px 14px;
+  outline: none;
+}
+
+.login-field input:focus {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(0,201,167,0.14);
+}
+
+.login-submit,
+.google-login {
+  width: 100%;
+  border: 0;
+  border-radius: 12px;
+  font: 800 14px var(--font);
+  cursor: pointer;
+  min-height: 46px;
+}
+
+.login-submit {
+  background: linear-gradient(135deg, var(--teal), #00E5FF);
+  color: var(--night);
+  box-shadow: 0 12px 28px rgba(0,201,167,0.24);
+}
+
+.login-separator {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0;
+  color: rgba(26,5,51,0.46);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.login-separator::before,
+.login-separator::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: rgba(26,5,51,0.12);
+}
+
+.google-login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid rgba(26,5,51,0.14);
+  background: var(--white);
+  color: var(--carbon);
+}
+
+.google-mark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  color: #4285F4;
+  font-weight: 900;
+}
+
+.login-error {
+  display: none;
+  color: #C62828;
+  background: rgba(198,40,40,0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.login-error.show { display: block; }
+
+.login-note {
+  color: rgba(26,5,51,0.5);
+  font-size: 11px;
+  line-height: 1.5;
+  margin-top: 12px;
+}
 </style>
 </head>
 <body>
+
+<section class="login-gate" id="loginGate" aria-label="Acceso al ebook">
+  <div class="login-card">
+    <div class="login-brand">
+      <div class="login-brand-icon">🧠</div>
+      <div>
+        <strong>Acceso al ebook</strong>
+        <span>Mitos y Realidades del Tratamiento de TDAH</span>
+      </div>
+    </div>
+
+    <form class="login-form" id="loginForm">
+      <label class="login-field">
+        Email
+        <input id="loginEmail" type="email" autocomplete="email" placeholder="tu@email.com" required>
+      </label>
+      <label class="login-field">
+        Password
+        <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Minimo 6 caracteres" minlength="6" required>
+      </label>
+      <p class="login-error" id="loginError">Usa un email valido y una password de al menos 6 caracteres.</p>
+      <button class="login-submit" type="submit">Entrar al ebook</button>
+      <div class="login-separator">o</div>
+      <button class="google-login" id="googleLogin" type="button">
+        <span class="google-mark">G</span>
+        Continuar con Google
+      </button>
+    </form>
+
+    <p class="login-note">
+      Acceso de demostracion para sitio estatico. Para validacion real con Google, conecta un proveedor de autenticacion en Vercel.
+    </p>
+  </div>
+</section>
 
 <div class="progress-bar" id="progressBar"></div>
 
@@ -1737,7 +1943,46 @@ body {
 <script>
 let current = 1;
 const total = 20;
+const authKey = 'ebookTdahAccessGranted';
 document.getElementById('total').textContent = total;
+
+function setAuthLocked(isLocked) {
+  document.body.classList.toggle('auth-locked', isLocked);
+}
+
+function grantAccess(method) {
+  localStorage.setItem(authKey, JSON.stringify({
+    method,
+    grantedAt: new Date().toISOString()
+  }));
+  setAuthLocked(false);
+}
+
+function hasAccess() {
+  return Boolean(localStorage.getItem(authKey));
+}
+
+setAuthLocked(!hasAccess());
+
+document.getElementById('loginForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const email = document.getElementById('loginEmail').value.trim();
+  const password = document.getElementById('loginPassword').value;
+  const error = document.getElementById('loginError');
+  const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+
+  if (!validEmail || password.length < 6) {
+    error.classList.add('show');
+    return;
+  }
+
+  error.classList.remove('show');
+  grantAccess('email');
+});
+
+document.getElementById('googleLogin').addEventListener('click', () => {
+  grantAccess('google');
+});
 
 function showPage(n) {
   if (n < 1) n = 1;
@@ -1780,8 +2025,8 @@ document.addEventListener('touchend', e => {
 }, { passive: true });
 
 // Initialize
+document.getElementById('progressBar').style.width = (current / total * 100) + '%';
 showPage(1);
 </script>
 </body>
 </html>
-
