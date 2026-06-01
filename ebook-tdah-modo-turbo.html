@@ -1115,10 +1115,41 @@ body {
   border: 1px solid rgba(255,255,255,0.16);
   border-radius: 14px;
   padding: 12px 10px;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--font);
+  text-align: center;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease, background 0.18s ease;
 }
-#p20 .price-card.featured {
+#p20 .price-card:hover,
+#p20 .price-card.selected {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,0.12);
+  border-color: #00E5FF;
+  box-shadow: 0 0 22px rgba(0,229,255,0.26);
+}
+#p20 .price-card.featured,
+#p20 .price-card.featured.selected {
   border: 2px solid var(--orange);
   box-shadow: 0 0 28px rgba(255,107,53,0.34);
+}
+#p20 .price-card.featured:hover {
+  box-shadow: 0 0 34px rgba(255,107,53,0.48);
+}
+#p20 .price-card.selected::after {
+  content: "Seleccionado";
+  position: absolute;
+  left: 50%;
+  bottom: -11px;
+  transform: translateX(-50%);
+  background: #00E5FF;
+  color: #0D1B2A;
+  border-radius: 999px;
+  padding: 3px 8px;
+  font-size: 8px;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 #p20 .save-badge {
   position: absolute;
@@ -2147,17 +2178,17 @@ body.auth-locked .login-gate { display: flex; }
   </div>
 
   <div class="pricing-row animate a5">
-    <div class="price-card">
+    <button class="price-card" type="button" data-plan="monthly" aria-pressed="false">
       <div class="plan-name">Mensual</div>
       <div class="price">$11.99<span>/monthly</span></div>
       <div class="price-note">$143.88 si pagas mes a mes por 12 meses</div>
-    </div>
-    <div class="price-card featured">
+    </button>
+    <button class="price-card featured selected" type="button" data-plan="yearly" aria-pressed="true">
       <div class="save-badge">Save 33%</div>
       <div class="plan-name">Anual</div>
       <div class="price">$97<span>/yearly</span></div>
       <div class="price-note">Ahorra $46.88 frente al pago mensual anualizado</div>
-    </div>
+    </button>
   </div>
 
   <a href="https://www.instagram.com/gabyneuropedia" target="_blank" class="offer-cta animate a6">
@@ -2220,6 +2251,17 @@ document.getElementById('loginForm').addEventListener('submit', e => {
 
 document.getElementById('googleLogin').addEventListener('click', () => {
   grantAccess('google');
+});
+
+document.querySelectorAll('#p20 .price-card').forEach(card => {
+  card.addEventListener('click', () => {
+    document.querySelectorAll('#p20 .price-card').forEach(option => {
+      option.classList.remove('selected');
+      option.setAttribute('aria-pressed', 'false');
+    });
+    card.classList.add('selected');
+    card.setAttribute('aria-pressed', 'true');
+  });
 });
 
 function showPage(n) {
