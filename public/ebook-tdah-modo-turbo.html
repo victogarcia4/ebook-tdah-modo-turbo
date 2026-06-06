@@ -340,8 +340,7 @@
    PAGE THEME CLASSES
    =================================================================== */
     .theme-portada {
-      background: linear-gradient(rgba(26, 5, 51, 0.8), rgba(26, 5, 51, 0.8)), url('mitos y realidades tx tdah portada.png') no-repeat center center;
-      background-size: cover;
+      background: linear-gradient(145deg, var(--violet-dark) 0%, #3D1578 60%, var(--violet) 100%);
       justify-content: center;
       align-items: center;
       text-align: center;
@@ -2355,8 +2354,13 @@
 
   <div class="ebook-viewport">
 
-    <!-- ===== SLIDE 1 — Portada ===== -->
-    <div class="page active theme-portada" id="p1">
+    <!-- ===== SLIDE 1 — PORTADA DE LA IMAGEN ===== -->
+    <div class="page active" id="p1" style="background: url('mitos y realidades tx tdah portada.png') no-repeat center center; background-size: cover; justify-content: center; align-items: center;">
+      <!-- Pure Cover Image Slide - No text overlay to avoid clashing with the text on the image itself -->
+    </div>
+
+    <!-- ===== SLIDE 2 — Portada HTML ===== -->
+    <div class="page theme-portada" id="p2">
       <div class="deco-circle c1"></div>
       <div class="deco-circle c2"></div>
       <div class="deco-circle c3"></div>
@@ -2380,8 +2384,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 2 — Aviso Importante ===== -->
-    <div class="page theme-disclaimer" id="p2">
+    <!-- ===== SLIDE 3 — Aviso Importante ===== -->
+    <div class="page theme-disclaimer" id="p3">
       <div style="flex:1; overflow-y:auto; padding: 32px 28px 10px;">
         <div style="display:flex;align-items:center;gap:8px;margin-bottom:10px;" class="animate a1">
           <span class="tag tag-orange">⚠️ Aviso Importante</span>
@@ -2416,8 +2420,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 3 — ¿Por qué existe el tratamiento? ===== -->
-    <div class="page theme-intro" id="p3">
+    <!-- ===== SLIDE 4 — ¿Por qué existe el tratamiento? ===== -->
+    <div class="page theme-intro" id="p4">
       <div style="flex:1;overflow-y:auto;padding:28px 28px 10px;">
         <span class="tag animate a1">Fisiología</span>
         <h2 class="animate a2" style="margin-top:8px;font-size:18px;">El cerebro con TDAH<br><span>procesa distinto</span></h2>
@@ -2466,8 +2470,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 4 — La sinapsis: donde ocurre todo ===== -->
-    <div class="page theme-exec-func" id="p4">
+    <!-- ===== SLIDE 5 — La sinapsis: donde ocurre todo ===== -->
+    <div class="page theme-exec-func" id="p5">
       <div style="flex:1;overflow-y:auto;padding:26px 22px 10px;">
         <span class="tag animate a1">Neurociencia</span>
         <h2 class="animate a2" style="font-size:17px;font-weight:800;color:var(--violet-dark);margin-top:8px;">
@@ -2512,8 +2516,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 5 — BLOQUE 1: TRATAMIENTO FARMACOLÓGICO ===== -->
-    <div class="page theme-block-intro" id="p5">
+    <!-- ===== SLIDE 6 — BLOQUE 1: TRATAMIENTO FARMACOLÓGICO ===== -->
+    <div class="page theme-block-intro" id="p6">
       <div style="flex:1;overflow-y:auto;padding:28px 28px 10px;">
         <span class="bloque-tag animate a1">BLOQUE 1</span>
         <h2 class="animate a2">Tratamiento<br><span>Farmacológico</span> 💊</h2>
@@ -2536,8 +2540,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 6 — Las dos grandes familias ===== -->
-    <div class="page theme-meds" id="p6">
+    <!-- ===== SLIDE 7 — Las dos grandes familias ===== -->
+    <div class="page theme-meds" id="p7">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">FDA Aprobados</span>
         <h2 class="animate a2" style="margin-top:8px;font-size:18px;">
@@ -2578,8 +2582,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 7 — Cómo funciona el metilfenidato ===== -->
-    <div class="page theme-exec-func" id="p7">
+    <!-- ===== SLIDE 8 — Cómo funciona el metilfenidato ===== -->
+    <div class="page theme-exec-func" id="p8">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Metilfenidato</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Bajar el ruido mental</h2>
@@ -2619,8 +2623,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 8 — Cómo funcionan las anfetaminas ===== -->
-    <div class="page theme-exec-func" id="p8">
+    <!-- ===== SLIDE 9 — Cómo funcionan las anfetaminas ===== -->
+    <div class="page theme-exec-func" id="p9">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Anfetaminas</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Más potencia, misma lógica</h2>
@@ -2656,8 +2660,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 9 — Cómo funcionan los no estimulantes (1) ===== -->
-    <div class="page theme-exec-func" id="p9">
+    <!-- ===== SLIDE 10 — Cómo funcionan los no estimulantes (1) ===== -->
+    <div class="page theme-exec-func" id="p10">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Atomoxetina</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Atomoxetina: El camino gradual</h2>
@@ -2695,8 +2699,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 10 — Cómo funcionan los no estimulantes (2) ===== -->
-    <div class="page theme-exec-func" id="p10">
+    <!-- ===== SLIDE 11 — Cómo funcionan los no estimulantes (2) ===== -->
+    <div class="page theme-exec-func" id="p11">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Guanfacina / Clonidina</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Calmar el sistema</h2>
@@ -2731,8 +2735,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 11 — Qué efectos esperar ===== -->
-    <div class="page theme-exec-func" id="p11">
+    <!-- ===== SLIDE 12 — Qué efectos esperar ===== -->
+    <div class="page theme-exec-func" id="p12">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Resultados esperados</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Lo que el tratamiento busca lograr</h2>
@@ -2775,8 +2779,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 12 — Efectos secundarios a observar ===== -->
-    <div class="page theme-disclaimer" id="p12">
+    <!-- ===== SLIDE 13 — Efectos secundarios a observar ===== -->
+    <div class="page theme-disclaimer" id="p13">
       <div style="flex:1; overflow-y:auto; padding: 26px 22px 10px;">
         <span class="tag tag-orange animate a1">Efectos Secundarios</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:12px;">
@@ -2806,8 +2810,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 13 — Cuándo consultar y contraindicaciones ===== -->
-    <div class="page theme-disclaimer" id="p13">
+    <!-- ===== SLIDE 14 — Cuándo consultar y contraindicaciones ===== -->
+    <div class="page theme-disclaimer" id="p14">
       <div style="flex:1; overflow-y:auto; padding: 26px 22px 10px;">
         <span class="tag tag-orange animate a1" style="background:#d32f2f;">🚨 Seguridad</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:#d32f2f;margin-top:8px;margin-bottom:12px;">
@@ -2835,8 +2839,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 14 — Tratamiento según la edad ===== -->
-    <div class="page theme-exec-func" id="p14">
+    <!-- ===== SLIDE 15 — Tratamiento según la edad ===== -->
+    <div class="page theme-exec-func" id="p15">
       <div style="flex:1;overflow-y:auto;padding:22px 20px 10px;">
         <span class="tag animate a1">Línea de Tiempo</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">
@@ -2888,8 +2892,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 15 — BLOQUE 2: TRATAMIENTO NO FARMACOLÓGICO ===== -->
-    <div class="page theme-multimodal" id="p15">
+    <!-- ===== SLIDE 16 — BLOQUE 2: TRATAMIENTO NO FARMACOLÓGICO ===== -->
+    <div class="page theme-multimodal" id="p16">
       <div style="flex:1;overflow-y:auto;padding:28px 28px 10px;">
         <span class="bloque-tag animate a1">BLOQUE 2</span>
         <h2 class="animate a2">Tratamiento<br><span>No Farmacológico</span> 🌱</h2>
@@ -2930,8 +2934,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 16 — Psicoterapia y entrenamiento conductual ===== -->
-    <div class="page theme-exec-func" id="p16">
+    <!-- ===== SLIDE 17 — Psicoterapia y entrenamiento conductual ===== -->
+    <div class="page theme-exec-func" id="p17">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Terapia</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Psicoterapia y conducta</h2>
@@ -2967,8 +2971,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 17 — Entrenar las funciones ejecutivas ===== -->
-    <div class="page theme-exec-func" id="p17">
+    <!-- ===== SLIDE 18 — Entrenar las funciones ejecutivas ===== -->
+    <div class="page theme-exec-func" id="p18">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Herramientas</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Entrena tus funciones ejecutivas</h2>
@@ -3010,8 +3014,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 18 — Apoyos escolares y de entorno ===== -->
-    <div class="page theme-school" id="p18">
+    <!-- ===== SLIDE 19 — Apoyos escolares y de entorno ===== -->
+    <div class="page theme-school" id="p19">
       <div style="flex:1;overflow-y:auto;padding:22px 22px 10px;">
         <span class="tag animate a1">Escuela Inclusiva</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Adaptar el aula de estudio</h2>
@@ -3040,8 +3044,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 19 — Sueño: el superpoder oculto ===== -->
-    <div class="page theme-sleep" id="p19">
+    <!-- ===== SLIDE 20 — Sueño: el superpoder oculto ===== -->
+    <div class="page theme-sleep" id="p20">
       <div style="flex:1;overflow-y:auto;padding:24px 24px 10px;">
         <span class="tag animate a1" style="background:rgba(255,255,255,0.12);color:#white;">Higiene del Sueño</span>
         <h2 class="animate a2" style="margin-top:10px;">Dormir es mantenimiento básico</h2>
@@ -3074,8 +3078,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 20 — Movimiento y nutrición ===== -->
-    <div class="page theme-move" id="p20">
+    <!-- ===== SLIDE 21 — Movimiento y nutrición ===== -->
+    <div class="page theme-move" id="p21">
       <div style="flex:1;overflow-y:auto;padding:22px 20px 10px;">
         <span class="tag animate a1">Estilo de Vida</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:12px;">Cuerpo activo, mente activa</h2>
@@ -3109,8 +3113,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 21 — Otras opciones complementarias ===== -->
-    <div class="page theme-exec-func" id="p21">
+    <!-- ===== SLIDE 22 — Otras opciones complementarias ===== -->
+    <div class="page theme-exec-func" id="p22">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Complementos</span>
         <h2 class="animate a2" style="font-size:17px;font-weight:800;color:var(--violet-dark);margin-top:8px;">Apoyos adicionales (con matices)</h2>
@@ -3148,8 +3152,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 22 — Conoce tu propio "perfil TDAH" ===== -->
-    <div class="page theme-profile" id="p22">
+    <!-- ===== SLIDE 23 — Conoce tu propio "perfil TDAH" ===== -->
+    <div class="page theme-profile" id="p23">
       <div style="flex:1;overflow-y:auto;padding:26px 26px 10px;">
         <span class="bloque-tag animate a1">Autogestión</span>
         <h2>¿Qué es lo mejor para ti? 🔍</h2>
@@ -3186,8 +3190,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 23 — BLOQUE 3: MITOS Y REALIDADES ===== -->
-    <div class="page theme-block-intro" id="p23">
+    <!-- ===== SLIDE 24 — BLOQUE 3: MITOS Y REALIDADES ===== -->
+    <div class="page theme-block-intro" id="p24">
       <div style="flex:1;overflow-y:auto;padding:28px 28px 10px;">
         <span class="bloque-tag animate a1">BLOQUE 3</span>
         <h2 class="animate a2">Mitos y<br><span>Realidades</span> 🚫</h2>
@@ -3210,8 +3214,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 24 — Mito: Causa adicción / dependencia ===== -->
-    <div class="page theme-myths" id="p24">
+    <!-- ===== SLIDE 25 — Mito: Causa adicción / dependencia ===== -->
+    <div class="page theme-myths" id="p25">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Desmitificando #1</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:14px;">El mito de la adicción</h2>
@@ -3230,8 +3234,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 25 — Mito: Lo vuelve un robot / nunca lo dejará ===== -->
-    <div class="page theme-myths" id="p25">
+    <!-- ===== SLIDE 26 — Mito: Lo vuelve un robot / nunca lo dejará ===== -->
+    <div class="page theme-myths" id="p26">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Desmitificando #2</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:14px;">Ni zombie ni para siempre</h2>
@@ -3250,8 +3254,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 26 — Mito: Se cura con esfuerzo / es leve y desaparece ===== -->
-    <div class="page theme-myths" id="p26">
+    <!-- ===== SLIDE 27 — Mito: Se cura con esfuerzo / es leve y desaparece ===== -->
+    <div class="page theme-myths" id="p27">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Desmitificando #3</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:14px;">No es falta de voluntad</h2>
@@ -3270,8 +3274,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 27 — Mitos: Escuela y genética ===== -->
-    <div class="page theme-myths" id="p27">
+    <!-- ===== SLIDE 28 — Mitos: Escuela y genética ===== -->
+    <div class="page theme-myths" id="p28">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Desmitificando #4</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;margin-bottom:14px;">Inteligencia y herencia</h2>
@@ -3294,8 +3298,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 28 — TDAH y trastorno oposicionista desafiante (TOD) ===== -->
-    <div class="page theme-exec-func" id="p28">
+    <!-- ===== SLIDE 29 — TDAH y trastorno oposicionista desafiante (TOD) ===== -->
+    <div class="page theme-exec-func" id="p29">
       <div style="flex:1;overflow-y:auto;padding:24px 22px 10px;">
         <span class="tag animate a1">Comorbilidades</span>
         <h2 class="animate a2" style="font-size:18px;font-weight:800;color:var(--violet-dark);margin-top:8px;">TDAH y conducta desafiante (TOD)</h2>
@@ -3331,8 +3335,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 29 — Cierre y Contraportada ===== -->
-    <div class="page theme-credits" id="p29">
+    <!-- ===== SLIDE 30 — Cierre y Contraportada ===== -->
+    <div class="page theme-credits" id="p30">
       <div style="flex:1;overflow-y:auto;padding:24px 24px 10px;display:flex;flex-direction:column;align-items:center;">
         <div class="logo-circle animate a1">🧠</div>
 
@@ -3372,8 +3376,8 @@
       </div>
     </div>
 
-    <!-- ===== SLIDE 30 — Oferta Mini App ===== -->
-    <div class="page theme-offer" id="p30">
+    <!-- ===== SLIDE 31 — Oferta Mini App ===== -->
+    <div class="page theme-offer" id="p31">
       <div class="offer-badge animate a1">Acceso a la mini-app</div>
       <h2 class="animate a2">Tu rastreador TDAH<br><span>a la medida</span></h2>
       <p class="offer-copy animate a3">
@@ -3428,13 +3432,13 @@
   <!-- Navigation -->
   <div class="nav-wrap">
     <button class="nav-btn" onclick="prevPage()" title="Anterior">←</button>
-    <span class="nav-counter"><span id="current">1</span> / <span id="total">30</span></span>
+    <span class="nav-counter"><span id="current">1</span> / <span id="total">31</span></span>
     <button class="nav-btn" onclick="nextPage()" title="Siguiente">→</button>
   </div>
 
   <script>
     let current = 1;
-    const total = 30;
+    const total = 31;
     const authKey = 'ebookTdahAccessGranted';
     document.getElementById('total').textContent = total;
 
@@ -3476,9 +3480,9 @@
       grantAccess('google');
     });
 
-    document.querySelectorAll('#p30 .price-card').forEach(card => {
+    document.querySelectorAll('#p31 .price-card').forEach(card => {
       card.addEventListener('click', () => {
-        document.querySelectorAll('#p30 .price-card').forEach(option => {
+        document.querySelectorAll('#p31 .price-card').forEach(option => {
           option.classList.remove('selected');
           option.setAttribute('aria-pressed', 'false');
         });
